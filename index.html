@@ -73,6 +73,27 @@ player.addEventListener("click", async () => {
 
 }, { once: true });
 
+// --- İSTEDİĞİN TUŞ KOMBİNASYONLARI VE ENGellemELER ---
+document.addEventListener("keydown", (e) => {
+    // F11 tuşunu tamamen iptal et
+    if (e.key === "F11") {
+        e.preventDefault();
+    }
+
+    // Alt + F4 engelleme girişimi (Tarayıcı izin verdiği kadarıyla)
+    if (e.altKey && e.key === "F4") {
+        e.preventDefault();
+    }
+
+    // F5, 8 veya Space tuşuna basınca tam ekrana geç
+    if (e.key === "F5" || e.key === "8" || e.key === " ") {
+        e.preventDefault(); // Sayfanın yenilenmesini veya kaymasını engelle
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => console.log(err));
+        }
+    }
+});
+
 </script>
 
 </body>
